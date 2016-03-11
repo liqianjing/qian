@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <script type="text/javascript">
+    /**
+     * 该函数用于完成target的类型判断和校验
+     * 检测target是否为type类型，
+     *     如果是，则直接返回target；
+     *     如果不是，则判断第三个参数是否存在，
+     *         如果存在，则返回默认值
+     *         如果不存在，则强制转换成type类型
+     * @param {String/Number/Boolean/Undefined/Null/Object/Array/Regexp} target
+     * @param {String} type 类型名称
+     * @param {String} def  默认信息（可选）
+     */
+
+    function ensure(target, type, def){
+      var lens = arguments.length;   //传入参数的个数
+      var result;                    //返回结果
+      var dataTypes = {              //数据类型
+        'string' : function(ele){
+          return String(ele);
+        },
+        'number' : function(ele){
+          return Number(ele);
+        },
+        'undefined' : function(ele){
+          return undefined;
+        },
+        'null' : function(ele){
+          return null;
+        },
+        'boolean' : function(ele){
+          return Boolean(ele);
+        },
+        'object' : function(ele){
+          var obj = {};
+          obj[0] = ele;
+          return obj;
+        },
+        'array' : function(ele){
+          var arr = [];
+          arr.push(ele);
+          return arr;
+        }
+      };
+
+      //检验传入的参数，如果有错直接返回
+      if(lens < 2 || typeof type !== 'string'){
+        return;
+      }
+
+      //一律转化成小写
+      type = type.toLowerCase();
+
+      if(dataTypes[''+ type +'']) {   //如果当前传入的类型合法
+        if(typeof target === type || typeof target === 'function' && type === 'function') {       //如果target是type类型
+          result = target;                 //直接返回target
+        }else {                            //如果target不是type类型
+
+          //判断特殊的null和array
+          if(Object.prototype.toString.call(target) === '[object '+ toUpper(type) +']'){
+            result = target;
+          }else {
+            if(lens > 2){                    //如果含有第三个参数
+              result = def;                  //直接返回第三个参数
+            }else {                          //如果不含有第三个参数
+              //进行强制类型转化
+              result = dataTypes[''+ type +''](target);
+            }
+          }
+        }
+      }else { //如果当前传入的类型不合法，则返回提示
+        result = 'js数据类型包含String，Number，Boolean，Undefined，Null，Object';
+      }
+
+      return result;
+    }
+
+    function toUpper(param){
+      return param.replace(/(\w)/,function(v){return v.toUpperCase()});
+    }
+
+    console.log(ensure());
+    console.log(ensure(1));
+    console.log(ensure(1, 1));
+    console.log(ensure('11111111111', 'string'));
+    console.log(ensure('11111111111', 'number'));
+    console.log(ensure('故意找茬', 'number'));
+    console.log(ensure('22222222222', 'boolean'));
+    console.log(ensure(0, 'boolean'));
+    console.log(ensure(0, 'undefined'));
+    console.log(ensure(0, 'undefined', 0));
+    console.log(ensure(null,'null'));
+    console.log(ensure(undefined,'undefined'));
+    console.log(ensure('','number','嘿呀'));
+    console.log(ensure('','object'));
+    console.log(ensure('咿呀咿呀呦','array'));
+  </script>
+</body>
+</html>

@@ -73,8 +73,10 @@
                       result = function(){}; //myEnsure.ensure({a:1},'function')
                     }else if(typeof target === 'number' && isNaN(target) && type === 'array'){
                       result = []; //myEnsure.ensure(NaN,'array')
-                    }else {
+                    }else if(dataObj.hasOwnProperty(type)){
                       result = dataObj[''+ type.toLowerCase() +''].constructor(target);
+                    }else {
+                      result = undefined;
                     }
                 }
                 

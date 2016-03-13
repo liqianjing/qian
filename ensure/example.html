@@ -8,115 +8,120 @@
   <script type="text/javascript" src="src/ensure.js"></script>
   <script type="text/javascript">
     // string
-    // console.log(myEnsure.ensure('abc'));
-    // console.log(myEnsure.ensure('def','string'));
-    // console.log(myEnsure.ensure(123,'string'));
-    // console.log(myEnsure.ensure(true,'string'));
-    // console.log(myEnsure.ensure({},'string'));
-    // console.log(myEnsure.ensure([123,456],'string'));
-    // console.log(myEnsure.ensure(NaN,'string'));
+    console.log(myEnsure.ensure('abc'));
+    console.log(myEnsure.ensure('def','string'));
+    console.log(myEnsure.ensure(123,'string'));
+    console.log(myEnsure.ensure(true,'string'));
+    console.log(myEnsure.ensure({},'string'));
+    console.log(myEnsure.ensure([123,456],'string'));
+    console.log(myEnsure.ensure(NaN,'string'));
 
     // Number
-    // console.log(myEnsure.ensure(12));
-    // console.log(myEnsure.ensure('def','number'));
-    // console.log(myEnsure.ensure(123,'number'));
-    // console.log(myEnsure.ensure(true,'number'));
-    // console.log(myEnsure.ensure({},'number'));
-    // console.log(myEnsure.ensure([123],'number'));
-    // console.log(myEnsure.ensure(NaN,'number'));
+    console.log(myEnsure.ensure(12));
+    console.log(myEnsure.ensure('def','number'));
+    console.log(myEnsure.ensure(123,'number'));
+    console.log(myEnsure.ensure(true,'number'));
+    console.log(myEnsure.ensure({},'number'));
+    console.log(myEnsure.ensure([123],'number'));
+    console.log(myEnsure.ensure(NaN,'number'));
 
     // Boolean
-    // console.log(myEnsure.ensure(false));
-    // console.log(myEnsure.ensure('def','boolean'));
-    // console.log(myEnsure.ensure(123,'boolean'));
-    // console.log(myEnsure.ensure(true,'boolean'));
-    // console.log(myEnsure.ensure({},'boolean'));
-    // console.log(myEnsure.ensure([123],'boolean'));
-    // console.log(myEnsure.ensure(0,'boolean'));
-    // console.log(myEnsure.ensure('','boolean'));
-    // console.log(myEnsure.ensure(NaN,'boolean'));
+    console.log(myEnsure.ensure(false));
+    console.log(myEnsure.ensure('def','boolean'));
+    console.log(myEnsure.ensure(123,'boolean'));
+    console.log(myEnsure.ensure(true,'boolean'));
+    console.log(myEnsure.ensure({},'boolean'));
+    console.log(myEnsure.ensure([123],'boolean'));
+    console.log(myEnsure.ensure(0,'boolean'));
+    console.log(myEnsure.ensure('','boolean'));
+    console.log(myEnsure.ensure(NaN,'boolean'));
 
     // null
-    // console.log(myEnsure.ensure(null));
-    // console.log(myEnsure.ensure('def','null'));
-    // console.log(myEnsure.ensure(123,'null'));
-    // console.log(myEnsure.ensure(true,'null'));
-    // console.log(myEnsure.ensure({},'null'));
-    // console.log(myEnsure.ensure([123],'null'));
-    // console.log(myEnsure.ensure(0,'null'));
-    // console.log(myEnsure.ensure('','null'));
-    // console.log(myEnsure.ensure(NaN,'null'));
+    console.log(myEnsure.ensure(null));
+    console.log(myEnsure.ensure('def','null'));
+    console.log(myEnsure.ensure(123,'null'));
+    console.log(myEnsure.ensure(true,'null'));
+    console.log(myEnsure.ensure({},'null'));
+    console.log(myEnsure.ensure([123],'null'));
+    console.log(myEnsure.ensure(0,'null'));
+    console.log(myEnsure.ensure('','null'));
+    console.log(myEnsure.ensure(NaN,'null'));
 
     // undefined
-    // console.log(myEnsure.ensure(undefined));
-    // console.log(myEnsure.ensure('def','undefined'));
-    // console.log(myEnsure.ensure(123,'undefined'));
-    // console.log(myEnsure.ensure(true,'undefined'));
-    // console.log(myEnsure.ensure({},'undefined'));
-    // console.log(myEnsure.ensure([123],'undefined'));
-    // console.log(myEnsure.ensure(0,'undefined'));
-    // console.log(myEnsure.ensure('','undefined'));
-    // console.log(myEnsure.ensure(NaN,'undefined'));
+    console.log(myEnsure.ensure(undefined));
+    console.log(myEnsure.ensure('def','undefined'));
+    console.log(myEnsure.ensure(123,'undefined'));
+    console.log(myEnsure.ensure(true,'undefined'));
+    console.log(myEnsure.ensure({},'undefined'));
+    console.log(myEnsure.ensure([123],'undefined'));
+    console.log(myEnsure.ensure(0,'undefined'));
+    console.log(myEnsure.ensure('','undefined'));
+    console.log(myEnsure.ensure(NaN,'undefined'));
 
     // object
-    // var obj = {a : 1};
-    // console.log(myEnsure.ensure(obj));
-    // console.log(myEnsure.ensure('def','object'));
-    // console.log(myEnsure.ensure(123,'object'));
-    // console.log(myEnsure.ensure(true,'object'));
-    // console.log(myEnsure.ensure({},'object'));
-    // console.log(myEnsure.ensure([123],'object'));
-    // console.log(myEnsure.ensure(0,'object'));
-    // console.log(myEnsure.ensure('','object'));
-    // console.log(myEnsure.ensure(NaN,'object'));
+    var obj = {a : 1};
+    console.log(myEnsure.ensure(obj));
+    console.log(myEnsure.ensure('def','object'));
+    console.log(myEnsure.ensure(123,'object'));
+    console.log(myEnsure.ensure(true,'object'));
+    console.log(myEnsure.ensure({},'object'));
+    console.log(myEnsure.ensure([123],'object'));
+    console.log(myEnsure.ensure(0,'object'));
+    console.log(myEnsure.ensure('','object'));
+    console.log(myEnsure.ensure(NaN,'object'));
 
     // array
-    // var arr = [1,2,3];
-    // console.log(myEnsure.ensure(arr));
-    // console.log(myEnsure.ensure('def','array'));
-    // console.log(myEnsure.ensure(123,'array'));
-    // console.log(myEnsure.ensure(true,'array'));
-    // console.log(myEnsure.ensure({},'array'));
-    // console.log(myEnsure.ensure([123],'array'));
-    // console.log(myEnsure.ensure(0,'array'));
-    // console.log(myEnsure.ensure('','array'));
-    // console.log(myEnsure.ensure(NaN,'array'));     //问题(Invalid array length)？？？？？
+    var arr = [1,2,3];
+    console.log(myEnsure.ensure(arr));
+    console.log(myEnsure.ensure('def','array'));
+    console.log(myEnsure.ensure(123,'array'));
+    console.log(myEnsure.ensure(true,'array'));
+    console.log(myEnsure.ensure({},'array'));
+    console.log(myEnsure.ensure([123],'array'));
+    console.log(myEnsure.ensure(0,'array'));
+    console.log(myEnsure.ensure('','array'));
+    console.log(myEnsure.ensure(NaN,'array'));     //问题(Invalid array length)？？？？？
 
     // function
-    // var fn = function(){};
-    // console.log(myEnsure.ensure(fn));
-    // console.log(myEnsure.ensure('def','function'));
-    // console.log(myEnsure.ensure(123,'function'));
-    // console.log(myEnsure.ensure(true,'function'));
-    // console.log(myEnsure.ensure({a:1},'function'));     //问题(Unexpected identifier)？？？？？
-    // console.log(myEnsure.ensure([123],'function'));
-    // console.log(myEnsure.ensure(0,'function'));
-    // console.log(myEnsure.ensure('','function'));
-    // console.log(myEnsure.ensure(NaN,'function'));
+    var fn = function(){};
+    console.log(myEnsure.ensure(fn));
+    console.log(myEnsure.ensure('def','function'));
+    console.log(myEnsure.ensure(123,'function'));
+    console.log(myEnsure.ensure(true,'function'));
+    console.log(myEnsure.ensure({a:1},'function'));     //问题(Unexpected identifier)？？？？？
+    console.log(myEnsure.ensure([123],'function'));
+    console.log(myEnsure.ensure(0,'function'));
+    console.log(myEnsure.ensure('','function'));
+    console.log(myEnsure.ensure(NaN,'function'));
 
     // Date
-    // var date = new Date();
-    // console.log(myEnsure.ensure(date));
-    // console.log(myEnsure.ensure('def','date'));
-    // console.log(myEnsure.ensure(123,'date'));
-    // console.log(myEnsure.ensure(true,'date'));
-    // console.log(myEnsure.ensure({},'date'));
-    // console.log(myEnsure.ensure([123],'date'));
-    // console.log(myEnsure.ensure(0,'date'));
-    // console.log(myEnsure.ensure('','date'));
-    // console.log(myEnsure.ensure(NaN,'date'));
+    var date = new Date();
+    console.log(myEnsure.ensure(date));
+    console.log(myEnsure.ensure('def','date'));
+    console.log(myEnsure.ensure(123,'date'));
+    console.log(myEnsure.ensure(true,'date'));
+    console.log(myEnsure.ensure({},'date'));
+    console.log(myEnsure.ensure([123],'date'));
+    console.log(myEnsure.ensure(0,'date'));
+    console.log(myEnsure.ensure('','date'));
+    console.log(myEnsure.ensure(NaN,'date'));
 
     // RegExp
-    // var reg = /^\d$/;
-    // console.log(myEnsure.ensure(reg));
-    // console.log(myEnsure.ensure('def','regExp'));
-    // console.log(myEnsure.ensure(123,'regExp'));
-    // console.log(myEnsure.ensure(true,'regExp'));
-    // console.log(myEnsure.ensure({},'regExp'));
-    // console.log(myEnsure.ensure([123],'regExp'));
-    // console.log(myEnsure.ensure(0,'regExp'));
-    // console.log(myEnsure.ensure('','regExp'));
-    // console.log(myEnsure.ensure(NaN,'regExp'));
+    var reg = /^\d$/;
+    console.log(myEnsure.ensure(reg));
+    console.log(myEnsure.ensure('def','regExp'));
+    console.log(myEnsure.ensure(123,'regExp'));
+    console.log(myEnsure.ensure(true,'regExp'));
+    console.log(myEnsure.ensure({},'regExp'));
+    console.log(myEnsure.ensure([123],'regExp'));
+    console.log(myEnsure.ensure(0,'regExp'));
+    console.log(myEnsure.ensure('','regExp'));
+    console.log(myEnsure.ensure(NaN,'regExp'));
+
+    // ts
+    console.log(myEnsure.ensure(0,'aaa'));
+    console.log(myEnsure.ensure());
+    console.log(myEnsure.ensure('1','number','嘿嘿'));
 
   </script>
 </body>

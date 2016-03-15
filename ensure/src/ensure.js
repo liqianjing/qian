@@ -9,11 +9,14 @@
  * @param {String} type 类型名称
  * @param {String} def  默认信息（可选）
  */
+
+如果toString方法返回的不是原始类型的值，结果就会报错。
+
 ;(function(global){
 
-  var typeObj = {};
-  var toStr = Object.prototype.toString;
-  var typeArr = ['Boolean','Number','String','Function','Array','Date','RegExp','Object'];
+  var plainObj = {}; //plainObj
+  var coreToString = Object.prototype.toString;
+  var typeNames = ['Boolean','Number','String','Function','Array','Date','RegExp','Object'];
 
   var dataObj = {
     'string' : '1',
@@ -28,9 +31,9 @@
     'regexp' : /^\d$/
   };
 
-  for(var i = 0, len = typeArr.length, item; i < len; i++) {
-    item = typeArr[i];
-    typeObj[ "[object " + item + "]" ] = item.toLowerCase();
+  for(var i = 0, len = typeNames.length, item; i < len; i++) {
+    item = typeNames[i];
+    plainObj[ "[object " + item + "]" ] = item.toLowerCase();
   }
 
   global.myEnsure = {
@@ -45,11 +48,11 @@
           if(target === null || target === undefined){
             result = String(target);
           }else {
-            result = typeObj[ toStr.call(target) ] || "object";
+            result = plainObj[ coreToString.call(target) ] || "object";
           }
         }else {                                                       // 传入两个及以上参数，则判断，转换
           if(target !== null && target !== undefined) {               // 不是null和undefined
-            if(typeObj[ toStr.call(target) ] === type.toLowerCase()){ // 当前target是为type类型，返回传入的target
+            if(plainObj[ coreToString.call(target) ] === type.toLowerCase()){ // 当前target是为type类型，返回传入的target
               result = target;
             }else {                                                // 当前target不是type类型   
               if(argLens > 2) {                                    // 第三个参数存在，返回第三个参数
@@ -69,7 +72,7 @@
                     break;
                   default:
                     /*排除异常情况*/
-                    if(typeObj[ toStr.call(target) ] === 'object' && type === 'function'){
+                    if(plainObj[ coreToString.call(target) ] === 'object' && type === 'function'){
                       result = function(){}; //myEnsure.ensure({a:1},'function')
                     }else if(typeof target === 'number' && isNaN(target) && type === 'array'){
                       result = []; //myEnsure.ensure(NaN,'array')

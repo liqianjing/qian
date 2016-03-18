@@ -10,7 +10,7 @@
  * @param {String} def  默认信息（可选）
  */
 
-如果toString方法返回的不是原始类型的值，结果就会报错。
+//如果toString方法返回的不是原始类型的值，结果就会报错。
 
 ;(function(global){
 

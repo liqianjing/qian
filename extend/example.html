@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>示例</title>
+</head>
+<body>
+
+	<script type="text/javascript" src="../ensure/src/ensure.js"></script>
+	<script type="text/javascript" src="src/extend.js"></script>
+
+	<script type="text/javascript">
+
+		var obj1 = {
+			a : 1,
+			b : 2,
+			c : 3
+		};
+
+		var obj2 = {
+			a : 0,
+			d : 3,
+			e : 4
+		};
+
+		var obj3 = {
+			f : { aa : 'a', bb : 'b'}
+		};
+
+		var obj4 = {
+			f : { aa : 'aaaaa'}
+		};
+
+		// var result = myExtend.extend(true, {}, obj1, obj2);
+		// console.log(result);//{a: 0, b: 2, c: 3, d: 3, e: 4}
+
+		// var result = myExtend.extend(true, {}, obj1, obj3);
+		// console.log(result);
+
+		// var result = myExtend.extend(true, {}, obj3, obj4);
+		// console.log(result);
+
+		// var result = myExtend.extend({}, obj3, obj4);
+		// console.log(result);
+	</script>
+</body>
+</html>

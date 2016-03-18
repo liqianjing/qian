@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>示例</title>
+</head>
+<body>
+
+	<script type="text/javascript" src="src/jquery.min.js"></script>
+	<script type="text/javascript">
+
+		// 未定义的属性不会被复制。然而，从对象原型的继承属性将被复制。如果属性（Properties）是一个通过构造函数new MyCustomObject(args)定义的，或JavaScript中内置类型，如Date 或 RegExp，是不会重新创建的，并且将被当作普通的对象出在返回的对象或数组中。
+
+		// 若设置了 deep 参数，对象和数组也会被合并进来，但是对象包裹的原始类型，比如String, Boolean, 和 Number是不会被合并进来的。
+
+		var object1 = {
+		  apple: 0,
+		  banana: { weight: 52, price: 100 },
+		  cherry: 97
+		};
+		var object2 = {
+		  banana: { price: 200 },
+		  durian: 100
+		};
+
+		var arry1 = [0,2,3];
+
+		var arry2 = [
+			{apple: 1},
+			{apple: 2},
+			{apple: 1}
+		];
+
+		var date = new Date();
+
+		//{apple: 0, banana: {price: 200}, cherry: 97, durian: 100}
+		//console.log($.extend( object1, object2 ));
+
+		//{apple: 0, banana: {price: 200, weight: 52}, cherry: 97, durian: 100}
+		//console.log($.extend( true, object1, object2 ));
+
+		//{apple: 0, banana: {price: 200}, cherry: 97, durian: 100}
+		//console.log($.extend( {}, object1, object2 ));
+
+		//{apple: 0, banana: {price: 200, weight: 52}, cherry: 97, durian: 100}
+		//console.log($.extend( true, {}, object1, object2 ));
+		//console.log(object1);
+
+		// 0: 1
+		// 1: 2
+		// 2: 3
+		// apple: 0
+		// banana: { weight: 52, price: 100 }
+		// cherry: 97
+		// console.log($.extend( {}, object1, arry1 ));
+
+		// apple: 0
+		// banana: { weight: 52, price: 100 }
+		// cherry: 97
+		// console.log($.extend( {}, object1, date));
+
+		//[{apple: 1},{apple: 2},{apple: 3}]
+		// console.log( $.extend( [], arry1, arry2 ) );
+
+		// [1,2,3]
+		// console.log( $.extend( [], arry2, arry1 ) );
+
+		// {0:1, 1:2, 2:3}
+		// console.log( $.extend( {}, arry2, arry1 ) );
+
+		// {0: 1, apple: 0, banana: {price: 200}}
+		// console.log( $.extend( {}, object2, '1' ) );
+
+		//console.log( $.extend( {}, object1, object2, arry1, '1' ) );
+		console.log( $.extend( {}, object1, object2, arry1, '1' ) );
+	</script>
+</body>
+</html>

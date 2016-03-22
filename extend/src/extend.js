@@ -6,8 +6,9 @@
  */
 
 (function(WIN){
-
-	var type = myEnsure.ensure;
+	// updata by liqian 2016/03/20
+	// 修改类型判断
+	var coreToString = Object.prototype.toString;
 
 	WIN.myExtend = {
 		extend : function (){
@@ -25,7 +26,7 @@
 				counter = 1;
 			}
 
-			target = type(target) !== 'objcet' ? target : {};
+			target = coreToString.call(target) === '[object Object]' ? target : {};
 			
 			/*
 			 * option : 当前的参数arguments[i]
@@ -47,16 +48,27 @@
 							continue;
 						}
 
-						//判断深拷贝(如果当前的值不存在，或者不是对象或者数组，则不进行递归调用)
-						if( deep && optVal && (type(optVal) === 'object' || type(optVal) === 'array')) { // 如果深拷贝，则递归
+						// updata by liqian 2016/03/21
+						//深拷贝结束之后，打破递归
+						if( deep && !optVal ) {
+							this.extend = null;
+						}
 
-							if(type(optVal) === 'object') {
-								clone = targetVal && type(targetVal) === 'object' ? targetVal : {};
+						//判断深拷贝(如果当前的值不存在，或者不是对象或者数组，则不进行递归调用)
+						if( deep && optVal && (coreToString.call(optVal) === '[object Object]' || coreToString.call(optVal) === '[object Array]')) { // 如果深拷贝，则递归
+
+							// updata by liqian 2016/03/20
+
+							if(coreToString.call(optVal) === '[object Object]') {
+								clone = targetVal && coreToString.call(targetVal) === '[object Object]' ? targetVal : {};
+							}else if( coreToString.call(optVal) === '[object Array]' ) {
+								clone = targetVal && coreToString.call(targetVal) === '[object Array]' ? targetVal : [];
 							}else {
-								clone = targetVal && type(targetVal) === 'array' ? targetVal : [];
+								target[ key ] = optVal;
+								continue;
 							}
 
-							target[ key ] = myExtend.extend( deep, clone, optVal );
+							target[ key ] = this.extend( deep, clone, optVal );
 						}else {
 							target[ key ] = optVal; //否则直接覆盖值
 						}

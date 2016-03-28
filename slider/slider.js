@@ -1,9 +1,14 @@
 ;(function(global){
   'use strict';
+
   var SLIDER = 'bili-slider';
   var CLICK = 'click.bilislider';
   var ACTIVE = 'bili-active';
+  var SIZE = 'sliderSize';
+  var Y = 'vertical';
+  var CURRENT = 'current';
   var supportAnimate = isSupport();
+  var timer;
 
   var paramDefault = {
     animation: "slide",             // String: ["fade"|"slide"]，动画效果
@@ -11,7 +16,7 @@
     animationLoop: true,            // Boolean: 是否循环播放
 
     startAt: 0,                     // Integer: 开始播放的 slide，从 0 开始计数
-    slideAuto: true,                // Boolean: 是否自动播放
+    slideAuto: false,                // Boolean: 是否自动播放
     slideshowSpeed: 5000,           // Integer: ms 滚动间隔时间
     animationSpeed: 600,            // Integer: ms 动画滚动速度
     initDelay: 0,                   // Integer: ms 首次执行动画的延迟
@@ -21,9 +26,9 @@
 
     controlThumbnail: false,        // Boolean: 是否创建缩略图
     controlNav: true,               // Boolean: 是否创建控制点
-    directionNav: true,             // Boolean: 是否创建上/下一个按钮（previous/next）
+    directionNav: false,             // Boolean: 是否创建上/下一个按钮（previous/next）
     prevText: "Previous",           // String: 上一个按钮文字
-    nextText: "Next"                // String: 下一个按钮文字
+    nextText: "Next",                // String: 下一个按钮文字
     
     // itemWidth: 0,                   // Integer: slide 宽度，多个同时滚动时设置
     // itemMargin: 0,                  // Integer: slide 间距
@@ -34,7 +39,7 @@
     // start: function(){},            // Callback: function(slider) - 初始化完成的回调
     // before: function(){},           // Callback: function(slider) - 每次滚动开始前的回调
     // after: function(){},            // Callback: function(slider) - 每次滚动完成后的回调
-    // end: function(){},              // Callback: function(slider) - 执行到最后一个 slide 的回调
+    end: function(){},              // Callback: function(slider) - 执行到最后一个 slide 的回调
     // added: function(){},            // Callback: function(slider) - slide 添加时触发
     // removed: function(){}           // Callback: function(slider) - slide 被移除时触发
   };
@@ -45,6 +50,8 @@
     var lens = opts.imgUrl.length;
     var str = '';
     var startAt = lens > opts.startAt ? opts.startAt : 0;
+    $.data( el, SIZE, lens );
+    $.data( el, CURRENT, startAt);
 
     for(var i = 0; i < lens; i++) {
       str += '<li class="bili-slides-item set-style '+ ( startAt === i ? "bili-active" : "") +'"><img src="'+ opts.imgUrl[i] +'" class="set-style"></li>';
@@ -76,7 +83,8 @@
     var $biliSlider = $('div.bili-slider',$el);
     var $view = $('.set-style',$el);
     var $ul = $('ul.bili-slides',$el);
-    var lens = $item.size();
+    //var lens = $item.size();
+    var lens = $.data(el, SIZE);
     var speed = opts.animationSpeed || 0;
     var startAt = lens > opts.startAt ? opts.startAt : 0;
     var ulStyle = {};
@@ -98,7 +106,7 @@
       $biliSlider.addClass(''+ SLIDER +'-slide');
 
       if(supportAnimate) {
-        if(opts.direction === 'vertical') {
+        if(opts.direction === Y) {
           ulStyle = {
             height : hei * lens + 'px',
             transition : 'transform '+ speed +'ms linear',
@@ -112,7 +120,7 @@
           };
         }
       }else {
-        if(opts.direction === 'vertical') {
+        if(opts.direction === Y) {
           ulStyle = {
             position : 'absolute',
             height : hei * lens + 'px',
@@ -134,7 +142,8 @@
   function domReader($el){
     var el = $el[0];
     var opts = $.data(el, SLIDER); //配置参数
-    var lens = opts.imgUrl.length;
+    //var lens = opts.imgUrl.length;
+    var lens = $.data(el, SIZE);
     var str = '';
     var startAt = lens > opts.startAt ? opts.startAt : 0;
 
@@ -145,8 +154,6 @@
         str += '<li class="'+ ( startAt === i ? "bili-active" : "") +'"><a class="bili-control-item">'+ (i+1) +'</a><i></i></li>';
       }
       str += '</ol>';
-
-      $el.append(str);
     }
 
     //如果需要缩略图
@@ -156,15 +163,15 @@
         str += '<li class="'+ ( startAt === i ? "bili-active" : "") +'"><img src="'+ opts.imgUrl[i] +'" class="bili-active"><i></i></li>';
       }
       str += '</ol>';
-
-      $el.append(str);
     }
 
     //如果需要左右按钮
     if(opts.directionNav){ 
-
+      str += '<p class="bili-btn bili-btn-left">' + opts.prevText + '</p>';
+      str += '<p class="bili-btn bili-btn-right">' + opts.nextText + '</p>';
     }
 
+    $el.append(str);
 
     // 4. 进行事件的绑定
     bindEvent($el);
@@ -174,17 +181,22 @@
   function bindEvent($el){
     var el = $el[0];
     var opts = $.data(el, SLIDER); //配置参数
+    var $ul = $('ol.bili-control-nav',$el);
     var $lis = $('ol.bili-control-nav li',$el);
     var $slide = $('ul.bili-slides',$el);
+    var $leftBtn = $('p.bili-btn-left',$el);
+    var $rightBtn = $('p.bili-btn-right',$el);
 
     //绑定下面的小点(或者缩略图)
-    $lis.unbind(CLICK).bind(CLICK,function(){
+    $lis.off(CLICK).on(CLICK,function(){
       var $this = null;
       var curIndex = 0;
       var $imgs = $('li.bili-slides-item',$slide);
 
       $this = $(this);
-      curIndex = $this.prevAll().length; // 当前点击的li的索引值
+      //curIndex = $this.prevAll().length; // 当前点击的li的索引值
+      curIndex = $this.text() - 1;
+      $.data(el, CURRENT, curIndex);
 
       //点击的位置变化
       $lis.removeClass(ACTIVE);
@@ -205,20 +217,68 @@
           jqAnimate($el,$slide,curIndex);
         }
       }
+
     });
 
     // 处理自动切换
-    animateAuto($el);
-    // 处理循环切换
-    animateLoop($el); 
+    animateAuto($el); 
+
+    // 左按钮绑定事件
+    $leftBtn.off(CLICK).on(CLICK,function(){
+
+      // 做循环处理
+      if(opts.animationLoop){
+        
+      }
+    });
+
+    // 右按钮绑定事件
+    $rightBtn.off(CLICK).on(CLICK,function(){
+
+      // 做循环处理
+      if(opts.animationLoop){
+        
+      }
+    });
   }
 
   function animateAuto($el){
     var el = $el[0];
     var opts = $.data(el, SLIDER); //配置参数
-    if(opts.slideAuto) { //如果自动播放的话
+    var $lis = $('ol.bili-control-nav li',$el);
+    var lens = $.data(el, SIZE);
+    var current = 0;
 
+    if(opts.slideAuto) { //如果需要自动播放
+      timer = setInterval(function(){
+        current = $.data(el, CURRENT);
+        showAuto($el, current, lens);
+      }, opts.slideshowSpeed);
     }
+  }
+  
+  // 滚动的函数
+  function showAuto($el, n, count) {
+    var el = $el[0];
+    var $lis = $('ol.bili-control-nav li',$el);
+    var opts = $.data(el, SLIDER);
+
+    // 是否循环播放
+    // if(n >= (count -1)){
+    //   if( opts.animationLoop ){
+    //     n = 0;
+    //   }else {
+    //     opts.end(n);
+    //   }
+    // }else {
+    //   n = ++n;
+    // }
+
+    // updata: 如果自动播放，那么默认循环
+    n > (count -1) ? 0 : ++n;
+
+    $lis.eq(n).trigger(CLICK);
+    $.data(el, CURRENT, n);
   }
 
   function animateLoop($el){
@@ -255,7 +315,7 @@
       left : -(wid * curIndex) + 'px'
     };
 
-    if(opts.direction === 'vertical') {
+    if(opts.direction === Y) {
       scroll = {
         top : -(hei * curIndex) + 'px'
       };

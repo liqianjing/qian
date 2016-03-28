@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  
+  <div class="wrap">
+    <div class="list list-once">div --> list list-once</div>
+    <div class="list">div --> list</div>
+    <div class="list">div --> list</div>
+    <p class="list list-once">p --> list list-once</p>
+
+    <p class="item">p --> item</p>
+    <p class="item">p --> item</p>
+  </div>
+  <script type="text/javascript" src="src/getByClass.js"></script>
+  <script type="text/javascript">
+    window.onload = function(){
+      var wrap = getByClass('wrap')[0];
+      console.log(wrap);
+
+      var list = getByClass('div.list',wrap);
+      for(var j = 0, len = list.length; j < len; j++){
+        list[j].style.color = '#f00';
+      }
+
+      var list = getByClass('p.item',wrap,false);
+      for(var j = 0, len = list.length; j < len; j++){
+        list[j].style.fontWeight = 'bold';
+      }
+    };
+  </script>
+</body>
+</html>

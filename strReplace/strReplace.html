@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <script type="text/javascript">
+    var newStr = ('12345').replace(/\d/g,function(){
+      var val, i, str='';
+      val = arguments[0];
+      i = 0;
+      while(i < parseInt(val)){
+        str += val;
+        i++;
+      }
+      return str;
+    });
+
+    document.write(newStr);
+  </script>
+</body>
+</html>

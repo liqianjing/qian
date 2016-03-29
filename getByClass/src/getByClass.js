@@ -73,8 +73,7 @@
       
     }else { // 如果不支持
       // 获取所有该范围内的符合的标签元素
-      tagName ? push.apply(allTag, context.getElementsByTagName(tagName)) : push.apply(allTag, DOC.all);
-      //push.apply(allTag, context.getElementsByTagName(tagName));
+      allTag = tagName ? context.getElementsByTagName(tagName) : DOC.all;
       // 匹配给定classname的正则表达式
       reg = new RegExp('(^| )'+ className +'( |$)');
       // 循环匹配结果

@@ -10,6 +10,7 @@
   var Y = 'vertical';
   var CURRENT = 'current';
   var DISABLED = 'bili-disabled';
+  var SETTIME = 'setTimer';
   var supportAnimate = isSupport();
   var timer;
 
@@ -182,6 +183,7 @@
     var $leftBtn = $('p.bili-btn-left',$el);
     var $rightBtn = $('p.bili-btn-right',$el);
     var $imgs = $('li.bili-slides-item',$slide);
+    var curTimer;
 
     // 绑定下面的小点(或者缩略图)
     $lis.off(CLICK).on(CLICK,function(){
@@ -226,6 +228,16 @@
     // 右按钮绑定事件
     $rightBtn.off(CLICK).on(CLICK,function(){
       clickBtn($el,'right',$(this));
+    });
+
+    // 鼠标划过
+    $el.hover(function(){
+      curTimer = $.data($(this)[0],SETTIME);
+      if(curTimer) {
+        clearInterval(curTimer);
+      }      
+    },function(){
+      animateAuto($el);
     });
   }
 
@@ -307,6 +319,8 @@
         current = $.data(el, CURRENT);
         showAuto($el, current, lens);
       }, opts.slideshowSpeed);
+
+      $.data(el, SETTIME, timer);
     }
   }
   

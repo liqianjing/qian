@@ -34,14 +34,14 @@
   <script type="text/javascript" src="slider.js"></script>
   <script type="text/javascript">
     $('div.slider-wrap').slider({
-      imgUrl : [
+      imgUrl: [
         'http://i0.hdslb.com/sp/51/5162029a6ec8593573ab72ed0759cbdd.jpg',
         'http://i0.hdslb.com/sp/fc/fcd166e5f34855a438ec0a609731bbe8.jpg',
         'http://pic.to8to.com/attch/day_160218/20160218_d968438a2434b62ba59dH7q5KEzTS6OH.png',
         'http://i1.hdslb.com/event/6b5beeab4319ce574a411e63cd6b5e55.png'
       ],
-      animationLoop : true,
-      startAt : 0,
+      animationLoop: true,
+      startAt: 0,
       animation: "slide",//fade
       direction: "vertical", //vertical / horizontal
       animationSpeed: 300, //完成每一个动画的时间
@@ -49,13 +49,13 @@
     });
 
     $('div.slider-wrap2').slider({
-      imgUrl : [
+      imgUrl: [
         'http://i0.hdslb.com/sp/51/5162029a6ec8593573ab72ed0759cbdd.jpg',
         'http://i0.hdslb.com/sp/fc/fcd166e5f34855a438ec0a609731bbe8.jpg',
         'http://i1.hdslb.com/event/6b5beeab4319ce574a411e63cd6b5e55.png'
       ],
-      animationLoop : false,
-      startAt : 1,
+      animationLoop: false,
+      startAt: 1,
       animation: "slide",
       direction: "horizontal",
       controlThumbnail: false,
@@ -81,25 +81,26 @@
         'http://i2.hdslb.com/promote/abdef2e2362869994c872d9e1f3bf586.jpg',
         'http://i0.hdslb.com/group1/M00/B7/00/oYYBAFb6LdqACzf8AADKAydRNDU121.jpg'
       ],
-      animationLoop : true,
-      startAt : 3,
+      animationLoop: true,
+      startAt: 3,
       animation: "fade",
       controlThumbnail: true,
       animationSpeed: 300,
       controlNav: false,
-      directionNav: false
+      directionNav: false,
+      slideAuto: true
     });
 
 
     $('div.slider-wrap4').slider({
-      imgUrl : [
+      imgUrl: [
         'http://i0.hdslb.com/sp/51/5162029a6ec8593573ab72ed0759cbdd.jpg',
         'http://i1.hdslb.com/event/6b5beeab4319ce574a411e63cd6b5e55.png',
         'http://i0.hdslb.com/sp/fc/fcd166e5f34855a438ec0a609731bbe8.jpg',
         'http://pic.to8to.com/attch/day_160218/20160218_d968438a2434b62ba59dH7q5KEzTS6OH.png'
       ],
       animationLoop : true,
-      startAt : 0,
+      startAt: 0,
       animation: "slide",
       direction: "horizontal",
       controlThumbnail: true,
@@ -107,7 +108,9 @@
       controlNav: false,
       directionNav: true,
       prevText: "<--", 
-      nextText: "-->"
+      nextText: "-->",
+      slideAuto: true,
+      slideshowSpeed: 3000 
     });
   </script>
 </body>

@@ -62,7 +62,7 @@ ul,ol,li {
   padding: 10px;
   color: #fff;
   cursor: pointer;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.8);
 }
 
 .bili-slider .bili-btn-left {
@@ -71,6 +71,10 @@ ul,ol,li {
 
 .bili-slider .bili-btn-right {
   right: 0;
+}
+
+.bili-slider .bili-disabled {
+  background: rgba(0,0,0,0.3);
 }
 
 .bili-slider .bili-control-thumbs {

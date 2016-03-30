@@ -30,15 +30,15 @@
   <div class="slider-wrap4"></div>
 
 
-  <script type="text/javascript" src="http://static.hdslb.com/js/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.min.js"></script>
   <script type="text/javascript" src="slider.js"></script>
   <script type="text/javascript">
     $('div.slider-wrap').slider({
       imgUrl : [
         'http://i0.hdslb.com/sp/51/5162029a6ec8593573ab72ed0759cbdd.jpg',
-        'http://i0.hdslb.com/u_user/626b98166f27053f597148826e7fbeeb.jpg',
         'http://i0.hdslb.com/sp/fc/fcd166e5f34855a438ec0a609731bbe8.jpg',
-        'http://pic.to8to.com/attch/day_160218/20160218_d968438a2434b62ba59dH7q5KEzTS6OH.png'
+        'http://pic.to8to.com/attch/day_160218/20160218_d968438a2434b62ba59dH7q5KEzTS6OH.png',
+        'http://i1.hdslb.com/event/6b5beeab4319ce574a411e63cd6b5e55.png'
       ],
       animationLoop : true,
       startAt : 0,
@@ -51,13 +51,13 @@
     $('div.slider-wrap2').slider({
       imgUrl : [
         'http://i0.hdslb.com/sp/51/5162029a6ec8593573ab72ed0759cbdd.jpg',
-        'http://i0.hdslb.com/u_user/626b98166f27053f597148826e7fbeeb.jpg',
-        'http://i0.hdslb.com/sp/fc/fcd166e5f34855a438ec0a609731bbe8.jpg'
+        'http://i0.hdslb.com/sp/fc/fcd166e5f34855a438ec0a609731bbe8.jpg',
+        'http://i1.hdslb.com/event/6b5beeab4319ce574a411e63cd6b5e55.png'
       ],
-      animationLoop : true,
+      animationLoop : false,
       startAt : 1,
       animation: "slide",
-      direction: "horizontal", //vertical / horizontal
+      direction: "horizontal",
       controlThumbnail: false,
       animationSpeed: 600,
       controlNav: false,
@@ -65,14 +65,15 @@
       prevText: "<--", 
       nextText: "-->",
       end: function(){
-        console.log('over');
+      },
+      start: function(){
       }
     });
 
     $('div.slider-wrap3').slider({
       imgUrl : [
         'http://i0.hdslb.com/sp/51/5162029a6ec8593573ab72ed0759cbdd.jpg',
-        'http://i0.hdslb.com/u_user/626b98166f27053f597148826e7fbeeb.jpg',
+        'http://i1.hdslb.com/event/6b5beeab4319ce574a411e63cd6b5e55.png',
         'http://i0.hdslb.com/sp/fc/fcd166e5f34855a438ec0a609731bbe8.jpg',
         'http://pic.to8to.com/attch/day_160218/20160218_d968438a2434b62ba59dH7q5KEzTS6OH.png',
         'http://i0.hdslb.com/group1/M00/B6/EA/oYYBAFbzjGiACnuVAAE_yxGjeas340.jpg',
@@ -93,7 +94,7 @@
     $('div.slider-wrap4').slider({
       imgUrl : [
         'http://i0.hdslb.com/sp/51/5162029a6ec8593573ab72ed0759cbdd.jpg',
-        'http://i0.hdslb.com/u_user/626b98166f27053f597148826e7fbeeb.jpg',
+        'http://i1.hdslb.com/event/6b5beeab4319ce574a411e63cd6b5e55.png',
         'http://i0.hdslb.com/sp/fc/fcd166e5f34855a438ec0a609731bbe8.jpg',
         'http://pic.to8to.com/attch/day_160218/20160218_d968438a2434b62ba59dH7q5KEzTS6OH.png'
       ],

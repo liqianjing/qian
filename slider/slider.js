@@ -9,6 +9,7 @@
   var SIZE = 'sliderSize';
   var Y = 'vertical';
   var CURRENT = 'current';
+  var DISABLED = 'bili-disabled';
   var supportAnimate = isSupport();
   var timer;
 
@@ -219,17 +220,17 @@
 
     // 左按钮绑定事件
     $leftBtn.off(CLICK).on(CLICK,function(){
-      clickBtn($el,'left');
+      clickBtn($el,'left',$(this));
     });
 
     // 右按钮绑定事件
     $rightBtn.off(CLICK).on(CLICK,function(){
-      clickBtn($el,'right');
+      clickBtn($el,'right',$(this));
     });
   }
 
   // 点击左右按钮的处理部分
-  function clickBtn($el, direction){
+  function clickBtn($el, direction, _this){
     var el = $el[0];
     var opts = $.data(el, SLIDER); //配置参数
     var lens = $.data(el, SIZE); //总长度
@@ -237,30 +238,45 @@
     var navLen = $('ol.bili-control-nav',$el).size();
     var $lis = $('ol.bili-control-nav li',$el);
     var $slide = $('ul.bili-slides',$el);
+    var $btn = $('p.bili-btn',$el);
 
     curIndex = $.data(el, CURRENT);
 
     if( direction === 'left') {
       --curIndex;
-      if(curIndex < 0) {
-        if(opts.animationLoop) {
-          curIndex = lens-1;
-        }else {
-          opts.end();
-          return;
+      if(curIndex <= 0) {
+        if(curIndex === 0 && !opts.animationLoop){
+          _this.addClass(DISABLED);
+          opts.start(_this);
         }
+        if(curIndex < 0){
+          if(opts.animationLoop) {
+            curIndex = lens-1;
+          }else {
+            return;
+          }
+        }
+      }else {
+        $btn.removeClass(DISABLED);
       }
     }
 
     if( direction === 'right') {
       ++curIndex;
-      if(curIndex >= lens) {
-        if(opts.animationLoop) {
-          curIndex = 0;
-        }else {
-          opts.end();
-          return;
+      if(curIndex >= lens-1) {
+        if(curIndex === lens-1 && !opts.animationLoop){
+          _this.addClass(DISABLED);
+          opts.end(_this);
         }
+        if(curIndex > lens-1){
+          if(opts.animationLoop) {
+            curIndex = 0;
+          }else {
+            return;
+          }
+        }
+      }else {
+        $btn.removeClass(DISABLED);
       }
     }
 
@@ -329,6 +345,7 @@
   // 不支持css3的，用jq的动画
   // 和上面的animate的函数只会执行一个
   function jqAnimate($el,tar,curIndex){
+    //debugger;
     var el = $el[0];
     var opts = $.data(el, SLIDER); //配置参数
     var speed = opts.animationSpeed; //执行动画的时间
@@ -343,6 +360,8 @@
         top : -(hei * curIndex) + 'px'
       };
     }
+
+    tar.animate(scroll, opts.animationSpeed);
   }
 
   // 判断当前的浏览器是否支持translate和transform

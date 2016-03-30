@@ -1,0 +1,105 @@
+html,body,div,ol,ul,li,img,a,p,i{
+  padding: 0;
+  margin: 0; 
+}
+
+ul,ol,li {
+  list-style: none;
+}
+
+/* 定义默认的样式 */
+
+.bili-slider {
+  position: relative;
+}
+
+.bili-slider .bili-viewport {
+  overflow: hidden;
+  position: relative;
+}
+
+.bili-slider-slide .bili-slides .bili-slides-item {
+  float: left;
+}
+
+.bili-slider .bili-control-nav {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.bili-slider .bili-control-paging .bili-control-item {
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin-left: 5px;
+  text-align: center;
+  line-height: 20px;
+  border: 2px solid #f25d8e;
+  border-radius: 11px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.bili-slider .bili-control-paging .bili-active {
+  background: #f25d8e;
+}
+
+.bili-slider .bili-control-paging .bili-control-item a {
+  text-decoration: none;
+  color: #f25d8e;
+}
+
+.bili-slider .bili-control-paging .bili-active a {
+  color: #fff;
+}
+
+.bili-slider .bili-btn {
+  position: absolute;
+  top: 40%;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  background: rgba(0,0,0,0.5);
+}
+
+.bili-slider .bili-btn-left {
+  left: 0;
+}
+
+.bili-slider .bili-btn-right {
+  right: 0;
+}
+
+.bili-slider .bili-control-thumbs {
+  width: 100%;
+  height: 40px;
+  background: rgba(0,0,0,0.8);
+}
+
+.bili-slider .bili-control-thumbs .bili-control-item {
+  float: left;
+  margin: 5px;
+  position: relative;
+  cursor: pointer;
+}
+
+.bili-slider .bili-control-thumbs img {
+  display: block;
+  height: 30px;
+}
+
+.bili-slider .bili-control-thumbs i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.bili-slider .bili-control-thumbs .bili-active i {
+  background: rgba(0,0,0,0);
+}

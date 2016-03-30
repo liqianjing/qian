@@ -3,80 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>slider</title>
+  <link rel="stylesheet" href="slider.css">
   <style type="text/css">
-    html,body,div,ol,ul,li,img,a{
-      padding: 0;
-      margin: 0; 
-    }
-
-    ul,ol,li {
-      list-style: none;
-    }
-
-    .slider-wrap {
+    .slider-wrap,
+    .slider-wrap2,
+    .slider-wrap3,
+    .slider-wrap4 {
       width: 500px;
       height: 300px;
+      margin: 50px 20px;
     }
 
-    .slider-wrap2 {
-      width: 300px;
-      height: 200px;
-      margin-top: 50px;
-    }
-
-    .bili-slider {
-      position: relative;
-    }
-
-    .bili-slider .bili-viewport {
-      overflow: hidden;
-      position: relative;
-    }
-
-    .bili-slider .bili-slides {
-      /*position: absolute;*/
-      transition : transform 2s linear;
-      transform : translateX(0);
-    }
-
-    .bili-slider-fade .bili-slides li {
-      position: absolute;
-      z-index: 0;
-    }
-
-    .bili-slider-fade .bili-slides li.bili-active {
-      z-index: 2;
-    }
-
-    .bili-slider-slide .bili-slides li {
-      float: left;
-    }
-    
-    .bili-control-nav  {
-      text-align: center;
-    }
-
-    .bili-control-nav .bili-control-item {
-      width: 20px;
-      height: 20px;
-      float: left;
-      margin-left: 5px;
-      text-align: center;
-      line-height: 20px;
-      border: 2px solid #6e96f1;
-      border-radius: 11px;
-      cursor: pointer;
-      background: #fff;
-      color: #6e96f1;
-    }
-
-    .bili-control-nav .bili-active .bili-control-item {
-      background: #6e96f1;
-      color: #fff;
-    }
-
-    .slider-wrap2 .bili-btn {
-      cursor: pointer;
+    .bili-slider .bili-control-thumbs img {
+      width: 50px;
     }
   </style>
 </head>
@@ -86,25 +25,36 @@
 
   <div class="slider-wrap2"></div>
 
+  <div class="slider-wrap3"></div>
+
+  <div class="slider-wrap4"></div>
+
 
   <script type="text/javascript" src="http://static.hdslb.com/js/jquery.min.js"></script>
   <script type="text/javascript" src="slider.js"></script>
   <script type="text/javascript">
     $('div.slider-wrap').slider({
-      imgUrl : ['http://i0.hdslb.com/sp/51/5162029a6ec8593573ab72ed0759cbdd.jpg','http://i0.hdslb.com/u_user/626b98166f27053f597148826e7fbeeb.jpg','http://i0.hdslb.com/sp/fc/fcd166e5f34855a438ec0a609731bbe8.jpg','http://pic.to8to.com/attch/day_160218/20160218_d968438a2434b62ba59dH7q5KEzTS6OH.png'],
+      imgUrl : [
+        'http://i0.hdslb.com/sp/51/5162029a6ec8593573ab72ed0759cbdd.jpg',
+        'http://i0.hdslb.com/u_user/626b98166f27053f597148826e7fbeeb.jpg',
+        'http://i0.hdslb.com/sp/fc/fcd166e5f34855a438ec0a609731bbe8.jpg',
+        'http://pic.to8to.com/attch/day_160218/20160218_d968438a2434b62ba59dH7q5KEzTS6OH.png'
+      ],
       animationLoop : true,
       startAt : 0,
       animation: "slide",//fade
       direction: "vertical", //vertical / horizontal
-      controlThumbnail: false,
-      animationSpeed: 300,
-      slideAuto: true,
-      end: function(n){console.log(n)} 
+      animationSpeed: 300, //完成每一个动画的时间
+      slideshowSpeed: 10000 //每个动画的间隔时间
     });
 
     $('div.slider-wrap2').slider({
-      imgUrl : ['http://i0.hdslb.com/sp/51/5162029a6ec8593573ab72ed0759cbdd.jpg','http://i0.hdslb.com/u_user/626b98166f27053f597148826e7fbeeb.jpg','http://i0.hdslb.com/sp/fc/fcd166e5f34855a438ec0a609731bbe8.jpg'],
-      animationLoop : false,
+      imgUrl : [
+        'http://i0.hdslb.com/sp/51/5162029a6ec8593573ab72ed0759cbdd.jpg',
+        'http://i0.hdslb.com/u_user/626b98166f27053f597148826e7fbeeb.jpg',
+        'http://i0.hdslb.com/sp/fc/fcd166e5f34855a438ec0a609731bbe8.jpg'
+      ],
+      animationLoop : true,
       startAt : 1,
       animation: "slide",
       direction: "horizontal", //vertical / horizontal
@@ -112,8 +62,51 @@
       animationSpeed: 600,
       controlNav: false,
       directionNav: true,
-      prevText: 'prev',
-      nextText: 'next'
+      prevText: "<--", 
+      nextText: "-->",
+      end: function(){
+        console.log('over');
+      }
+    });
+
+    $('div.slider-wrap3').slider({
+      imgUrl : [
+        'http://i0.hdslb.com/sp/51/5162029a6ec8593573ab72ed0759cbdd.jpg',
+        'http://i0.hdslb.com/u_user/626b98166f27053f597148826e7fbeeb.jpg',
+        'http://i0.hdslb.com/sp/fc/fcd166e5f34855a438ec0a609731bbe8.jpg',
+        'http://pic.to8to.com/attch/day_160218/20160218_d968438a2434b62ba59dH7q5KEzTS6OH.png',
+        'http://i0.hdslb.com/group1/M00/B6/EA/oYYBAFbzjGiACnuVAAE_yxGjeas340.jpg',
+        'http://i0.hdslb.com/group1/M00/B7/01/oYYBAFb7Z5aAe3PSAADRuDNKAUU200.jpg',
+        'http://i2.hdslb.com/promote/abdef2e2362869994c872d9e1f3bf586.jpg',
+        'http://i0.hdslb.com/group1/M00/B7/00/oYYBAFb6LdqACzf8AADKAydRNDU121.jpg'
+      ],
+      animationLoop : true,
+      startAt : 3,
+      animation: "fade",
+      controlThumbnail: true,
+      animationSpeed: 300,
+      controlNav: false,
+      directionNav: false
+    });
+
+
+    $('div.slider-wrap4').slider({
+      imgUrl : [
+        'http://i0.hdslb.com/sp/51/5162029a6ec8593573ab72ed0759cbdd.jpg',
+        'http://i0.hdslb.com/u_user/626b98166f27053f597148826e7fbeeb.jpg',
+        'http://i0.hdslb.com/sp/fc/fcd166e5f34855a438ec0a609731bbe8.jpg',
+        'http://pic.to8to.com/attch/day_160218/20160218_d968438a2434b62ba59dH7q5KEzTS6OH.png'
+      ],
+      animationLoop : true,
+      startAt : 0,
+      animation: "slide",
+      direction: "horizontal",
+      controlThumbnail: true,
+      animationSpeed: 200,
+      controlNav: false,
+      directionNav: true,
+      prevText: "<--", 
+      nextText: "-->"
     });
   </script>
 </body>

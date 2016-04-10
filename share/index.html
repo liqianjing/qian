@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>share</title>
+</head>
+<body>
+  <p>所有渠道的分享</p>
+  <ul id="share">
+    <li class="share-btn" data-share="weibo">weibo</li>
+    <li class="share-btn" data-share="tieba">tieba</li>
+    <li class="share-btn" data-share="qqzone">qzone</li>
+    <li class="share-btn" data-share="tqq">tqq</li>
+    <li class="share-btn" data-share="renren">renren</li>
+    <li class="share-btn" data-share="douban">douban</li>
+    <li class="share-btn" data-share="facebook">facebook</li>
+    <li class="share-btn" data-share="twitter">twitter</li>
+    <li class="share-btn" data-share="qq">qq</li>
+  </ul>
+  <p>一个页面存在多个不同配置的分享/同时可以在某段时间后更改分享</p>
+  <ul id="share2">
+    <li class="share-btn" data-share="weibo">weibo1111111</li>
+    <li class="share-btn" data-share="tieba">tieba111111111</li>
+    <li class="share-btn" data-share="qqzone">qzone11111</li>
+    <li class="share-btn" data-share="qq">qq11111111111</li>
+  </ul>
+
+  <script type="text/javascript" src="index.js"></script>
+  <script type="text/javascript">
+    var shareWrap = document.getElementById('share');
+    var shareWrap2 = document.getElementById('share2');
+    var share = new webShare({
+      target: shareWrap.getElementsByClassName('share-btn'),
+      style: 0,
+      share: {
+        url: 'http://www.bilibili.com',
+        title: '分享测试标题',
+        desc: '分享测试介绍',
+        pic: 'http://i1.hdslb.com/bfs/face/807d8cb190df594058da0b7e7be03560e96913e5.jpg'
+      }
+    }).bind();
+
+    var share2 = new webShare({
+      target: shareWrap2.getElementsByClassName('share-btn'),
+      style: 0,
+      share: {
+        url: 'http://www.bilibili.com',
+        title: '分享测试标题22222222',
+        desc: '分享测试介绍22222222',
+        pic: 'http://static.hdslb.com/mstation/active/bdf/h5img/icon-share.png'
+      }
+    });
+    share2.bind();
+
+    setTimeout(function(){
+      share2.chageShare({
+        title: '分享测试标题3333333333',
+        desc: '分享测试介绍333333333333'
+      });
+      share2.bind();
+    },5000);
+  </script>
+</body>
+</html>

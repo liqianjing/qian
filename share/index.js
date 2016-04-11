@@ -1,6 +1,3 @@
-// 待完成：
-// 1. 配置一套默认的皮肤同时可配置显示的渠道
-
 ;(function(global){
   var coreToString = Object.prototype.toString;
   var link = global.location.href;

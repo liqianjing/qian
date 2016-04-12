@@ -112,8 +112,6 @@
     },
     facebook: {
       u: '{{url}}',
-      pic: '{{pic}}',
-      t: '{{title}}' + '{{desc}}'
     },
     twitter: {
       url: '{{url}}',
@@ -164,17 +162,6 @@
     var str = '<ul class="share-pc-wrap clearfix">';
     var curChannel = null;
     var ele;
-
-    // 在页头插入样式表
-    // if(flag){
-    //   var link = DOC.createElement('link');
-    //   var head = DOC.getElementsByTagName('head')[0];
-    //   link.rel = "stylesheet";
-    //   link.type = "text/css";
-    //   link.href = "index.css";
-    //   head.appendChild(link);
-    //   flag = false;
-    // }
 
     ele = initParam.target;
     curChannel = initParam.channel ? initParam.channel : {"0":"weibo","1":"tieba","2":"qqzone","3":"tqq","4":"renren","5":"douban","6":"facebook","7":"qq"};
@@ -227,13 +214,14 @@
 
             bindShareParam[''+ type +''] = JSON.parse(channelParam);
           }
-          
-          // 把分享参数配置到链接里面拼接起来
+
           curChannelParam = _extend({},bindShareParam[''+ type +'']);
           curChannelParam = JSON.stringify(curChannelParam).replace(/\:/g,'=');
           curChannelParam = curChannelParam.replace(/\,/g,'&');
           curChannelParam = curChannelParam.replace(/\{|\}/g,'');
           curChannelParam = curChannelParam.replace(/\"|\'/g,'');
+
+          console.log(curChannelParam);
           global.open(url[''+ type +''] + curChannelParam,'_blank','toolbar=no,menubar=no,scrollbars=no,resizable=1,location=no,status=0,width=800,height=680,top=0,left=0');
         }
       }

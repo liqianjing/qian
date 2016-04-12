@@ -3,158 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <title>share</title>
+  <link rel="stylesheet" type="text/css" href="src/index.css">
   <style type="text/css">
-    /*http://static.hdslb.com/images/v3images/sharepic.png*/
     body,html,p,ul,li {
       padding: 0;
       margin: 0;
     }
-
-    ul {
-      overflow: hidden;
-    }
-
-    .share-btn {
-      width: 40px;
-      height: 40px;
-      margin-left: 10px;
-      float: left;
-      font-size: 0;
-      overflow: hidden;
-      cursor: pointer;
-      background: url('share-icon.png') no-repeat;
-    }
-
-    .share-icon-weibo {
-      background-position: 0 -161px;
-    }
-
-    .share-icon-weibo:hover {
-      background-position: -60px -161px;
-    }
-
-    .share-icon-tqq {
-      background-position: 0 -107px;
-    }
-
-    .share-icon-tqq:hover {
-      background-position: -60px -107px;
-    }
-
-    .share-icon-qqzone {
-      background-position: 0 -54px;
-    }
-
-    .share-icon-qqzone:hover {
-      background-position: -60px -54px;
-    }
-
-    .share-icon-tieba {
-      background-position: 0 -270px;
-    }
-
-    .share-icon-tieba:hover {
-      background-position: -60px -270px;
-    }
-
-    .share-icon-qq {
-      background-position: 0 0;
-    }
-
-    .share-icon-qq:hover {
-      background-position: -60px 0;
-    }
-
-    .share-icon-renren {
-      background-position: 0 -215px;
-    }
-
-    .share-icon-renren:hover {
-      background-position: -60px -215px;
-    }
-
-    .share-icon-douban {
-      background-position: 0 -324px;
-    }
-
-    .share-icon-douban:hover {
-      background-position: -60px -324px;
-    }
-
-    .share-icon-weixin {
-      background-position: 0 -378px;
-    }
-
-    .share-icon-weixin:hover {
-      background-position: -60px -378px;
-    }
-
-    .share-icon-facebook {
-      background-position: 0 -432px;
-    }
-
-    .share-icon-facebook:hover {
-      background-position: -60px -432px;
-    }
-
   </style>
 </head>
 <body>
-  <p>所有渠道的分享</p>
-  <ul id="share">
-    <li class="share-btn share-icon-weibo" data-share="weibo" title="分享到新浪微博">weibo</li>
-    <li class="share-btn share-icon-tieba" data-share="tieba" title="分享到百度贴吧">tieba</li>
-    <li class="share-btn share-icon-qqzone" data-share="qqzone" title="分享到qq空间">qzone</li>
-    <li class="share-btn share-icon-tqq" data-share="tqq" title="分享到腾讯微博">tqq</li>
-    <li class="share-btn share-icon-renren" data-share="renren" title="分享到人人">renren</li>
-    <li class="share-btn share-icon-douban" data-share="douban" title="分享到豆瓣">douban</li>
-    <li class="share-btn share-icon-facebook" data-share="facebook" title="分享到facebook">facebook</li>
-    <!-- <li class="share-btn share-icon-twitter" data-share="twitter" title="分享到twitter">twitter</li> -->
-    <li class="share-btn share-icon-qq" data-share="qq" title="分享给qq好友">qq</li>
-    <li class="share-btn share-icon-weixin"  title="分享到微信">qq</li>
-  </ul>
-  <p>一个页面存在多个不同配置的分享/同时可以在某段时间后更改分享(5s以后分享内容变化)</p>
-  <ul id="share2">
-    <li class="share-btn share-icon-weibo" data-share="weibo">weibo1111111</li>
-    <li class="share-btn share-icon-tieba" data-share="tieba">tieba111111111</li>
-    <li class="share-btn share-icon-qqzone" data-share="qqzone">qzone11111</li>
-    <li class="share-btn share-icon-qq" data-share="qq">qq11111111111</li>
-  </ul>
+  <p>不传入渠道名称会默认加载所有支持的渠道</p>
+  <p>5秒以后自动跟换了分享内容</p>
+  <div id="share"></div>
+  <p>支持自定义渠道显示</p>
+  <div id="share2"></div>
 
-  <script type="text/javascript" src="index.js"></script>
+  <script type="text/javascript" src="src/index.js"></script>
   <script type="text/javascript">
     var shareWrap = document.getElementById('share');
     var shareWrap2 = document.getElementById('share2');
+    /* 不传入渠道名称会默认加载所有支持的渠道 */
     var share = new webShare({
-      target: shareWrap.getElementsByClassName('share-btn'),
-      style: 1,
+      target: shareWrap,
+      pageCodeUrl: './img/code.png',
       share: {
         url: 'http://www.bilibili.com',
         title: '分享测试标题',
         desc: '分享测试介绍',
         pic: 'http://i1.hdslb.com/bfs/face/807d8cb190df594058da0b7e7be03560e96913e5.jpg'
       }
-    }).bind();
-
-    var share2 = new webShare({
-      target: shareWrap2.getElementsByClassName('share-btn'),
-      style: 0,
-      share: {
-        url: 'http://www.bilibili.com',
-        title: '分享测试标题22222222',
-        desc: '分享测试介绍22222222',
-        pic: 'http://static.hdslb.com/mstation/active/bdf/h5img/icon-share.png'
-      }
     });
-    share2.bind();
 
     setTimeout(function(){
-      share2.chageShare({
-        title: '分享测试标题3333333333',
-        desc: '分享测试介绍333333333333'
+      share.chageShare({
+        title: '分享测试标题33333333333',
+        desc: '分享测试介绍3333333333',
       });
-      share2.bind();
-    },5000);
+    },6000);
+
+    var share2 = new webShare({
+      target: shareWrap2,
+      pageCodeUrl: './code.png',
+      channel: ['weibo','qqzone','qq','weixin'],
+      share: {
+        url: 'http://www.bilibili.com',
+        title: '分享测试标题2222222',
+        desc: '分享测试介绍2222222222',
+        pic: 'http://i1.hdslb.com/bfs/face/807d8cb190df594058da0b7e7be03560e96913e5.jpg'
+      }
+    });
   </script>
 </body>
 </html>
